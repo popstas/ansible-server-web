@@ -3,10 +3,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getItems } from "../../helpers/getItems";
 import { ItemTypeShort } from "../../helpers/types";
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ItemTypeShort[]>
 ) {
-  const items = await getItems();
+  const items = getItems();
   res.status(200).json(items);
 }

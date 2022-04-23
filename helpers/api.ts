@@ -11,10 +11,12 @@ function send<T>(
   config: ConfigType = {},
   method: "get" | "post" = "get"
 ): Promise<AxiosResponse<T>> {
-  const req = config.req;
+  // const req = config.req;
   // axios doesnt need that
   delete config.req;
-  url = `/api/site/${url}`;
+
+  const origin = typeof window !== "undefined" ? window.origin : 'http://192.168.1.10:3000/'; // TODO: current origin
+  url = `${origin}/api/${url}`;
 
   return method === "get"
     ? axios.get<T>(url, config)

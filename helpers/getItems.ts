@@ -33,7 +33,8 @@ function getHost(hostname: string): ItemTypeShort[] {
     type: 'host',
     name: hostname,
     host: hostname,
-    // data: {},
+    readme: getReadme(hostname),
+    data: getYaml(`${hostsPath}/${hostname}/vars.yml`),
   });
   items.push(...getHostItems(hostname, 'site'));
   items.push(...getHostItems(hostname, 'project'));
@@ -43,16 +44,26 @@ function getHost(hostname: string): ItemTypeShort[] {
 function getHostItems(host: string, type: 'project' | 'site'): ItemTypeShort[] {
   const dir = `${hostsPath}/${host}/${type}s`;
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) return [];
-  const items =
-    fs
-      .readdirSync(dir)
-      .filter((el) => el.includes('.yml'))
-      .map((itemName) => {
-        const raw = fs.readFileSync(`${dir}/${itemName}`);
-        const name = itemName.replace('.yml', '');
-        const data = {}; //parse(`${raw}`);
-        return { type, name, host/* , data */ } as ItemTypeShort;
-      }) || [];
+  return fs
+    .readdirSync(dir)
+    .filter((el) => el.includes('.yml'))
+    .map((itemName) => {
+      const data = getYaml(`${dir}/${itemName}`);
+      const name = itemName.replace('.yml', '');
+      return { type, name, host, data } as ItemTypeShort;
+    }) || [];
+}
 
-  return items;
+function getYaml(path: string) {
+  if (!fs.existsSync(path)) return {};
+  const raw = fs.readFileSync(path);
+  return parse(`${raw}`);
+}
+
+function getReadme(slug: string): string {
+  const readmePath = `${hostsPath}/${slug}/README.md`;
+  if (fs.existsSync(readmePath)) {
+    return fs.readFileSync(readmePath).toString();
+  }
+  return '';
 }
