@@ -19,7 +19,7 @@ const HostPage: NextPage<PageProps> = ({host}) => {
   return (
     <div>
       <Head>
-        <title>{ hostname }</title>
+        <title>{ hostname } - ansible-server</title>
       </Head>
 
       <main>

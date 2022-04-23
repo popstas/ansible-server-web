@@ -4,6 +4,7 @@ import { ItemTypeShort } from '../helpers/types';
 import { ItemsProvider } from "../helpers/itemsContext";
 import api from '../helpers/api';
 import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
 
 type PropsType = AppProps & { items: ItemTypeShort[] };
 
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps, items }: PropsType) {
 
   return (
     <ItemsProvider value={items}>
-      <Component {...pageProps} key={router.asPath} />
+      <Layout>
+        <Component {...pageProps} key={router.asPath} />
+      </Layout>
     </ItemsProvider>
   );
 }
