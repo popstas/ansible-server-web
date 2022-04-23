@@ -4,6 +4,7 @@ import { HostType } from '../../helpers/types';
 import { useItems } from '../../helpers/itemsContext';
 import { useRouter } from 'next/router';
 import api from '../../helpers/api';
+import { Remark } from 'react-remark';
 
 type PageProps = { host: HostType };
 
@@ -12,6 +13,7 @@ const HostPage: NextPage<PageProps> = ({host}) => {
   const hostname = router.query.host;
   const items = useItems();
   const item = items.find(el => el.type === 'host' && el.name === hostname);
+
   if (!item) return (<div>404</div>);
 
   return (
@@ -26,7 +28,7 @@ const HostPage: NextPage<PageProps> = ({host}) => {
         { host.ip && (<div>ip: {host.ip}</div>)}
 
         { item.readme && (
-          <pre>{ item.readme }</pre>
+          <Remark>{ item.readme }</Remark>
         )}
       </main>
     </div>
