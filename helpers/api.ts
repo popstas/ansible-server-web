@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { IncomingMessage } from "http";
+import * as https from 'https';
 
 type ConfigType = AxiosRequestConfig & {
   req?: IncomingMessage;
@@ -15,7 +16,14 @@ function send<T>(
   // axios doesnt need that
   delete config.req;
 
-  const origin = typeof window !== "undefined" ? window.origin : 'http://192.168.1.10:3000/'; // TODO: current origin
+  // ignore ssl errors, only for dev
+  if (process.env.NODE_ENV !== 'production'){
+    config.httpsAgent = new https.Agent({
+      rejectUnauthorized: false
+    });
+  }
+
+  const origin = typeof window !== "undefined" ? window.origin : process.env.ORIGIN;
   url = `${origin}/api/${url}`;
 
   return method === "get"
