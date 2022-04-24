@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { ItemTypeShort } from "../helpers/types";
+import { ItemTypeShort } from "helpers/types";
 import Link from "next/link";
 
 type PropsType = {

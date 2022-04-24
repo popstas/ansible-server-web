@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Topline from "../components/Topline";
-import { ReactFCWithChildren } from '../helpers/react';
+import Topline from "components/Topline";
+import { ReactFCWithChildren } from 'helpers/react';
 
 const Layout: ReactFCWithChildren = ({ children }) => {
   return (

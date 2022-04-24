@@ -1,10 +1,10 @@
 import '../styles/globals.css'
 import App, { AppContext, AppProps } from 'next/app'
-import { ItemTypeShort } from '../helpers/types';
-import { ItemsProvider } from "../helpers/itemsContext";
-import api from '../helpers/api';
+import { ItemTypeShort } from 'helpers/types';
+import { ItemsProvider } from "helpers/itemsContext";
+import api from 'helpers/api';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
 
 type PropsType = AppProps & { items: ItemTypeShort[] };
 

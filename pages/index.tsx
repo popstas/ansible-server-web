@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import Hosts from '../components/Hosts';
-import { getItems } from '../helpers/getItems';
-import { ItemTypeShort } from '../helpers/types';
-import styles from '../styles/Home.module.css';
+import Hosts from 'components/Hosts';
+import { getItems } from 'helpers/getItems';
+import { ItemTypeShort } from 'helpers/types';
+import styles from 'styles/Home.module.css';
 
 type PropsType = {
   items: ItemTypeShort[];

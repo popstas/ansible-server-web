@@ -1,4 +1,4 @@
-import { ItemTypeShort } from './types';
+import { ItemTypeShort } from 'helpers/types';
 import fs from 'fs';
 import env from 'process';
 import { parse } from 'yaml';

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { HostType } from '../../helpers/types';
+import { HostType } from 'helpers/types';
 
 export default function handler(
   req: NextApiRequest,
