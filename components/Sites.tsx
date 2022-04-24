@@ -15,7 +15,7 @@ const Sites: FunctionComponent<PropsType> = ({items}) => {
       <ul>
         {items.map((item, i) => {
           return <li key={i}>
-            <Link href={`/sites/${item.host}/${item.name}`}><a>{item.name}</a></Link>
+            <Link href={`/hosts/${item.host}/sites/${item.name}`}><a>{item.name}</a></Link>
           </li>;
         })}
       </ul>

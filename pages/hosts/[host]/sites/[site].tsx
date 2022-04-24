@@ -1,9 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import { HostType } from '../../../helpers/types';
-import { useItems } from '../../../helpers/itemsContext';
+import { HostType } from '../../../../helpers/types';
+import { useItems } from '../../../../helpers/itemsContext';
 import { useRouter } from 'next/router';
-import api from '../../../helpers/api';
+import api from '../../../../helpers/api';
 import { Remark } from 'react-remark';
 import Link from 'next/link';
 
