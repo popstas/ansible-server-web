@@ -32,7 +32,7 @@ const SitePage: NextPage<PageProps> = ({host}) => {
         <Link href={`/hosts/${item.host}`}><a>{ item.host }</a></Link>
 
         { item.readme && (
-          <Remark>{ item.readme }</Remark>
+          <div className="mt-4"><Remark>{ item.readme }</Remark></div>
         )}
       </main>
     </div>

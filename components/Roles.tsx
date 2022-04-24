@@ -9,7 +9,7 @@ type PropsType = {
 const Projects: FunctionComponent<PropsType> = ({host}) => {
   const items = host.roles || [];
 
-  return (
+  return items.length > 0 && (
     <div>
       <h3>Roles:</h3>
       <ul>
@@ -21,7 +21,7 @@ const Projects: FunctionComponent<PropsType> = ({host}) => {
         })}
       </ul>
     </div>
-  );
+  ) || (<></>);
 };
 
 export default Projects;

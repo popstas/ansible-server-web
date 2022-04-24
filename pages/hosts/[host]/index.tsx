@@ -36,7 +36,7 @@ const HostPage: NextPage<PageProps> = ({host}) => {
         { sites && <Sites items={sites}/> }
 
         { item.readme && (
-          <Remark>{ item.readme }</Remark>
+          <div className="mt-4"><Remark>{ item.readme }</Remark></div>
         )}
       </main>
     </div>

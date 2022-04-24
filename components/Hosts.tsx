@@ -11,7 +11,7 @@ const Hosts: FunctionComponent<PropsType> = ({items}) => {
 
   return (
     <div>
-      <h2>Hosts:</h2>
+      <h3>Hosts:</h3>
       <ul>
         {items.map((item, i) => {
           return <li key={i}>

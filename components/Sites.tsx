@@ -9,8 +9,9 @@ type PropsType = {
 const Sites: FunctionComponent<PropsType> = ({items}) => {
   items = items.filter((el) => el.type === 'site');
 
-  return (
+  return items.length > 0 && (
     <div>
+      <h3>Sites:</h3>
       <ul>
         {items.map((item, i) => {
           return <li key={i}>
@@ -19,7 +20,7 @@ const Sites: FunctionComponent<PropsType> = ({items}) => {
         })}
       </ul>
     </div>
-  );
+  ) || (<></>);
 };
 
 export default Sites;
