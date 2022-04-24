@@ -39,6 +39,7 @@ function getHost(hostname: string): ItemTypeShort[] {
 
   items.push({
     type: 'host',
+    slug: hostname,
     name: hostname,
     host: hostname,
     readme: getReadme(hostname),
@@ -56,11 +57,12 @@ function getHostItems(host: string, type: 'project' | 'site'): ItemTypeShort[] {
   return fs
     .readdirSync(dir)
     .filter((el) => el.includes('.yml'))
-    .map((itemName) => {
-      const data = getYaml(`${dir}/${itemName}`);
+    .map((filename) => {
+      const data = getYaml(`${dir}/${filename}`);
       const readme = data?.readme || data?.p_init_readme || "";
-      const name = itemName.replace('.yml', '');
-      return { type, name, host, data, readme } as ItemTypeShort;
+      const name = filename.replace('.yml', '');
+      const slug = `${host}/${type}s/${name}`;
+      return { slug, type, name, host, data, readme } as ItemTypeShort;
     }) || [];
 }
 
