@@ -1,12 +1,13 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import { HostType } from '../../helpers/types';
-import { useItems } from '../../helpers/itemsContext';
+import { HostType } from '../../../helpers/types';
+import { useItems } from '../../../helpers/itemsContext';
 import { useRouter } from 'next/router';
-import api from '../../helpers/api';
+import api from '../../../helpers/api';
 import { Remark } from 'react-remark';
-import Projects from '../../components/Projects';
-import Sites from '../../components/Sites';
+import Projects from '../../../components/Projects';
+import Sites from '../../../components/Sites';
+import Roles from '../../../components/Roles';
 
 type PageProps = { host: HostType };
 
@@ -30,8 +31,7 @@ const HostPage: NextPage<PageProps> = ({host}) => {
       <main>
         <h1>{ hostname }</h1>
 
-        { host.ip && (<div>ip: {host.ip}</div>)}
-
+        { item?.roles && <Roles host={item}/>}
         { projects && <Projects items={projects}/> }
         { sites && <Sites items={sites}/> }
 

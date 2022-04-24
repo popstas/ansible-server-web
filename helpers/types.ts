@@ -4,8 +4,13 @@ export type ItemTypeShort = {
   host: string,
   readme?: string,
   children?: ItemTypeShort[],
+  roles?: RoleType[],
 }
 
 export type HostType = ItemTypeShort & {
   ip: string,
+}
+
+export type RoleType = string | {
+  role: string,
 }

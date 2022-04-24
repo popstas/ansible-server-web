@@ -35,12 +35,15 @@ function getHost(hostname: string): ItemTypeShort[] {
   ];
   items.push(...children);
 
+  const playbook = getYaml(`${hostsPath}/${hostname}/playbook.yml`);
+
   items.push({
     type: 'host',
     name: hostname,
     host: hostname,
     readme: getReadme(hostname),
     data: getYaml(`${hostsPath}/${hostname}/vars.yml`),
+    roles: playbook && playbook[0]?.roles ? playbook[0].roles : [],
     children,
   });
 
