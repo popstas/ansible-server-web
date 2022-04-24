@@ -29,15 +29,21 @@ function _getItems(): ItemTypeShort[] {
 
 function getHost(hostname: string): ItemTypeShort[] {
   const items = [];
+  const children = [
+    ...getHostItems(hostname, 'site'),
+    ...getHostItems(hostname, 'project'),
+  ];
+  items.push(...children);
+
   items.push({
     type: 'host',
     name: hostname,
     host: hostname,
     readme: getReadme(hostname),
     data: getYaml(`${hostsPath}/${hostname}/vars.yml`),
+    children,
   });
-  items.push(...getHostItems(hostname, 'site'));
-  items.push(...getHostItems(hostname, 'project'));
+
   return items;
 }
 
@@ -49,8 +55,9 @@ function getHostItems(host: string, type: 'project' | 'site'): ItemTypeShort[] {
     .filter((el) => el.includes('.yml'))
     .map((itemName) => {
       const data = getYaml(`${dir}/${itemName}`);
+      const readme = data?.readme || data?.p_init_readme || "";
       const name = itemName.replace('.yml', '');
-      return { type, name, host, data } as ItemTypeShort;
+      return { type, name, host, data, readme } as ItemTypeShort;
     }) || [];
 }
 

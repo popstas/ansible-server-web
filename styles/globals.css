@@ -29,8 +29,7 @@ h1 {
 
 ol {
   @apply mt-3;
-  list-style: numeric;
-  list-style-position: inside;
+  list-style: inside numeric;
 }
 code {
   @apply bg-gray-100 px-2 inline-block;

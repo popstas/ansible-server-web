@@ -3,6 +3,7 @@ export type ItemTypeShort = {
   name: string,
   host: string,
   readme?: string,
+  children?: ItemTypeShort[],
 }
 
 export type HostType = ItemTypeShort & {
